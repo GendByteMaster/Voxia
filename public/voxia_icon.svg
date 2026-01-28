@@ -1,39 +1,16 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1"/>
-      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur2"/>
-      <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur3"/>
-      <feColorMatrix in="blur3" type="matrix" values="1 0 0 0 0  0 0.25 0 0 0  0 0 0 0 0  0 0 0 1 0" result="glow3"/>
-      <feMerge>
-        <feMergeNode in="glow3"/>
-        <feMergeNode in="blur2"/>
-        <feMergeNode in="blur1"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    <radialGradient id="bg-grad" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#1a1a1a"/>
-      <stop offset="100%" stop-color="#000000"/>
-    </radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1024" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="256" y1="188" x2="768" y2="836" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E8F3FF"/>
+      <stop offset="1" stop-color="#7CC0FF"/>
+    </linearGradient>
   </defs>
-  
-  <rect width="512" height="512" rx="100" fill="url(#bg-grad)"/>
-  
-  <!-- Neon V Wave -->
-  <path d="M120 180 C 180 180, 220 350, 256 350 C 292 350, 332 180, 392 180" 
-        stroke="#FC4C02" 
-        stroke-width="24" 
-        stroke-linecap="round" 
-        fill="none" 
-        filter="url(#neon-glow)"
-  />
-  
-  <!-- Core Bright Line -->
-  <path d="M120 180 C 180 180, 220 350, 256 350 C 292 350, 332 180, 392 180" 
-        stroke="#ffb380" 
-        stroke-width="6" 
-        stroke-linecap="round" 
-        fill="none" 
-  />
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <path d="M248 188 H388 L512 660 L636 188 H776 L572 836 H452 L248 188 Z" fill="url(#mark)"/>
+  <path d="M512 660 L572 836 H452 L512 660 Z" fill="#5CA8F8"/>
 </svg>

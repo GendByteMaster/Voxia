@@ -1,20 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #111111;
-  --color-surface-card: #1E1E1E;
-  --color-surface-hover: #2C2C2C;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #9CA3AF;
-  --color-accent: #FC4C02; /* Yandex-ish orange/red accent */
+  --color-background: #f2f3f5;
+  --color-surface-card: #ffffff;
+  --color-surface-hover: #f0f1f3;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-accent: #007aff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --accent-rgb: 0, 122, 255;
+  --font-sans: "SF Pro Display", "SF Pro Text", "SF Pro", -apple-system, "Helvetica Neue", "Segoe UI", sans-serif;
+  font-family: "SF Pro Display", "SF Pro Text", "SF Pro", -apple-system, "Helvetica Neue", "Segoe UI", sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  letter-spacing: -0.01em;
 
-  color-scheme: dark;
+  color-scheme: light;
   color: var(--color-text-primary);
   background-color: var(--color-background);
 
@@ -27,28 +36,67 @@
 body {
   margin: 0;
   display: flex;
-  place-items: flex-start; /* Changed from center to allow full layout */
+  place-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--color-background);
-  background-image: 
-    radial-gradient(circle at 50% 0%, #2a1b15 0%, transparent 60%),
-    radial-gradient(circle at 100% 100%, #1a1a1a 0%, transparent 50%);
+  background-image:
+    radial-gradient(circle at 12% 0%, rgba(0, 122, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(0, 0, 0, 0.06), transparent 40%),
+    linear-gradient(180deg, #f7f8fb 0%, #eef1f6 100%);
   background-attachment: fixed;
 }
 
 @utility glass {
-  background-color: rgba(30, 30, 30, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 @utility glass-hover {
-  background-color: rgba(40, 40, 40, 0.8);
-  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 #root {
   width: 100%;
+}
+
+.accented-range {
+  accent-color: var(--color-accent);
+}
+
+@keyframes equalizer-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.2);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scaleY(var(--bar-scale));
+    opacity: 0.9;
+  }
+}
+
+.equalizer-bar {
+  transform-origin: bottom;
+  animation: equalizer-pulse var(--bar-duration) ease-in-out infinite;
+  animation-delay: var(--bar-delay);
+  will-change: transform, opacity;
+}
+
+.equalizer-paused .equalizer-bar {
+  animation-play-state: paused;
+  transform: scaleY(0.2);
+  opacity: 0.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .equalizer-bar {
+    animation: none;
+    transform: scaleY(0.2);
+    opacity: 0.2;
+  }
 }
